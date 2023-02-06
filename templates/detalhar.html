@@ -7,11 +7,14 @@
     <title>Noticias SENAC</title>
 </head>
 <body>
-
     <h1>Noticias SENAC</h1>
+    <h2>Autor:</h2>
 
     <ul>
-        <li><a href="{% url 'listar_autores' %}">Autores</a></li>
+        <li>{{ autor.nome }}</li>
+        <li>{{ autor.cpf }}</li>
+        <li>{{ autor.email }}</li>
+        <li>{{ autor.data_nascimento }}</li>
     </ul>
 
 </body>

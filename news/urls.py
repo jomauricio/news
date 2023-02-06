@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from noticias.views import index
+from noticias.views import index, listar, detalhar
 
 urlpatterns = [
-    path('', index),
+    path('', index, name='index'),
+    path('autores/<int:pk>', detalhar, name='detalhar_autor'),
+    path('autores/', listar, name='listar_autores'),
     path('admin/', admin.site.urls),
 ]

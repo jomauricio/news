@@ -7,11 +7,13 @@
     <title>Noticias SENAC</title>
 </head>
 <body>
-
     <h1>Noticias SENAC</h1>
+    <h2>Autores:</h2>
 
     <ul>
-        <li><a href="{% url 'listar_autores' %}">Autores</a></li>
+        {% for autor in autores %}
+        <li><a href="{% url 'detalhar_autor' autor.pk %}">{{ autor.nome }} - {{ autor.email }}</a></li>
+        {% endfor %}
     </ul>
 
 </body>

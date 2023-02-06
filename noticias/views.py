@@ -4,7 +4,14 @@ from .models import Autor
 # Create your views here.
 
 def index(request):
+    return render(request, "index.html")
 
-    autor = Autor.objects.get(pk=1)
-    c =  {'autor':autor}
-    return render(request, "index.html", c)
+def listar(request):
+    autores = Autor.objects.all()
+    context = {"autores": autores}
+    return render(request, "listar.html", context)
+
+def detalhar(request, pk):
+    autor = Autor.objects.get(pk=pk)
+    context = {"autor": autor}
+    return render(request, "detalhar.html", context)
