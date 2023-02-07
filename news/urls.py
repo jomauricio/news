@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from noticias.views import index, listar, detalhar
+from noticias.views import deletar, index, listar, detalhar, cadastrar, atualizar, deletar
 
 urlpatterns = [
     path('', index, name='index'),
     path('autores/<int:pk>', detalhar, name='detalhar_autor'),
+    path('autores/atualizar/<int:pk>', atualizar, name='atualizar_autor'),
+    path('autores/deletar/<int:pk>', deletar, name='deletar_autor'),
     path('autores/', listar, name='listar_autores'),
+    path('autores/cadastrar', cadastrar, name='cadastrar_autor'),
     path('admin/', admin.site.urls),
 ]

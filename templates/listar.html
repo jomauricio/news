@@ -9,6 +9,10 @@
 <body>
     <h1>Noticias SENAC</h1>
     <h2>Autores:</h2>
+    {{msg}}
+    <ul>
+        <li><a href="{% url 'cadastrar_autor'%}">Cadastrar Autor</a></li>
+    </ul>
 
     <ul>
         {% for autor in autores %}

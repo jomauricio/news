@@ -9,6 +9,10 @@
 <body>
     <h1>Noticias SENAC</h1>
     <h2>Autor:</h2>
+    <ul>
+        <li><a href="{% url 'atualizar_autor' autor.pk %}">Atualizar</a></li>
+        <li><a href="{% url 'deletar_autor' autor.pk %}">Deletar</a></li>
+    </ul>
 
     <ul>
         <li>{{ autor.nome }}</li>
