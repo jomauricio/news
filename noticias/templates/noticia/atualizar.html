@@ -7,13 +7,14 @@
     <title>Noticias SENAC</title>
 </head>
 <body>
-
     <h1>Noticias SENAC</h1>
+    <h2>Atualizar Noticia: {{ form.instance.titulo}}</h2>
 
-    <ul>
-        <li><a href="{% url 'listar_autores' %}">Autores</a></li>
-        <li><a href="{% url 'listar_noticias' %}">Noticias</a></li>
-    </ul>
+    <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Atualizar</button>
+    </form>
 
 </body>
 </html>

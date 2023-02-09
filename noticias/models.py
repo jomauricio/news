@@ -11,3 +11,13 @@ class Autor(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.nome, self.email)
+
+class Noticia(models.Model):
+
+    titulo = models.CharField(max_length=100)
+    conteudo = models.TextField()
+    data_pub = models.DateField()
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='noticias')
+
+    def __str__(self):
+        return "{} - {}".format(self.titulo, self.autor)
