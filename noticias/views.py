@@ -6,7 +6,9 @@ from .forms import AutorForm, NoticiaForm
 # Create your views here.
 
 def index(request):
-    return render(request, "index.html")
+    autores = Autor.objects.all()[:5]
+    noticias = Noticia.objects.all()[:5]
+    return render(request, "index.html", {'autores': autores, 'noticias': noticias})
 
 def listar_autor(request):
     autores = Autor.objects.all()
