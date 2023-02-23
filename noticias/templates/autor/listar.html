@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias SENAC</title>
-</head>
-<body>
+{% extends 'index.html' %}
+    {% block title %}Noticias SENAC - Autores{% endblock title %}
+    {% block content %}
     <h1>Noticias SENAC</h1>
     <h2>Autores:</h2>
-    {{msg}}
-    <ul>
-        <li><a href="{% url 'cadastrar_autor'%}">Cadastrar Autor</a></li>
-    </ul>
-
-    <ul>
+    <div class="d-flex justify-content-end">
+    <a class="btn btn-primary" href="{% url 'cadastrar_autor'%}" role="button">Cadastrar Autor</a>
+    </div>
+    <ul class="list-group list-group-flush">
         {% for autor in autores %}
-        <li><a href="{% url 'detalhar_autor' autor.pk %}">{{ autor.nome }} - {{ autor.email }}</a></li>
+        <li class="list-group-item" ><a href="{% url 'detalhar_autor' autor.pk %}">{{ autor.nome }}</a></li>
         {% endfor %}
     </ul>
-
-</body>
-</html>
+    {% endblock content %}

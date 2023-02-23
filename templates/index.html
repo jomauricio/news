@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias SENAC</title>
+    <title>{% block title %}Noticias SENAC{% endblock title %}</title>
     {% bootstrap_css %}
     <style>
         main > .container {
@@ -53,9 +53,9 @@
                 <a class="nav-link" href="{% url 'listar_noticias' %}">Noticias</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" role="search" method="get" action="{% url 'index' %}">
+              <input class="form-control me-2" name="q" type="search" placeholder="Pesquisar" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Pesquisar</button>
             </form>
           </div>
         </div>
@@ -65,8 +65,8 @@
     <!-- Begin page content -->
     <main class="flex-shrink-0">
         {% bootstrap_messages %}
-      <div class="container">
-        <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+      <div class="container my-4">
+        <!-- <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
           <ol class="carousel-indicators">
             <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
             <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
@@ -91,28 +91,30 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        </div> -->
+        {% block content %}
 
         <div class="row">
           <div class="col">
-            <ul>
+            <h2>Autores</h2>
+            <ul class="list-group list-group-flush">
               {% for autor in autores %}
-              <li>{{ autor.nome }}</li>
+              <li class="list-group-item" ><a href="{% url 'detalhar_autor' autor.pk %}">{{ autor.nome }}</a></li>
               {% endfor %}
             </ul>
-
           </div>
           <div class="col">
-            <ul>
+            <h2>Noticias</h2>
+            <ul class="list-group list-group-flush">
               {% for noticia in noticias %}
-              <li>{{ noticia.titulo }}</li>
+              <li class="list-group-item"><a href="{% url 'detalhar_noticia' noticia.pk %}">{{ noticia.titulo }}</a></li>
               {% endfor %}
             </ul>
           </div>
         </div>
+
+        {% endblock content %}
       </div>
-
-
     </main>
     
     <footer class="footer mt-auto py-3 bg-light">

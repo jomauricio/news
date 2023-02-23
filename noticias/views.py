@@ -6,7 +6,14 @@ from .forms import AutorForm, NoticiaForm
 # Create your views here.
 
 def index(request):
-    autores = Autor.objects.all()[:5]
+    
+    q = request.GET.get('q', '')
+    
+    if q == '':
+        autores = Autor.objects.all()[:5]
+    else:
+        autores = Autor.objects.filter(nome__contains=q)
+
     noticias = Noticia.objects.all()[:5]
     return render(request, "index.html", {'autores': autores, 'noticias': noticias})
 
@@ -52,7 +59,7 @@ def deletar_autor(request, pk):
 
     if autor:
         autor.delete()
-        return redirect("noticias/autor")
+        return redirect("/")
     else:
         return render(request, "autor/listar.html", {'msg': "Autor não encontrado"})
 

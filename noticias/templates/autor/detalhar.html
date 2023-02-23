@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias SENAC</title>
-</head>
-<body>
-    <h1>Noticias SENAC</h1>
-    <h2>Autor:</h2>
-    <ul>
-        <li><a href="{% url 'atualizar_autor' autor.pk %}">Atualizar</a></li>
-        <li><a href="{% url 'deletar_autor' autor.pk %}">Deletar</a></li>
-    </ul>
-
-    <ul>
-        <li>{{ autor.nome }}</li>
-        <li>{{ autor.cpf }}</li>
-        <li>{{ autor.email }}</li>
-        <li>{{ autor.data_nascimento }}</li>
-    </ul>
-
-</body>
-</html>
+{% extends 'index.html' %}
+{% block title %}Noticias SENAC - Autor: {{ autor.nome }} {% endblock title %}
+{% block content %}
+<h1>Noticias SENAC</h1>
+<h2>Autor:</h2>
+<div class="d-flex justify-content-end">
+<div class="btn-group">
+    <a href="{% url 'atualizar_autor' autor.pk %}" class="btn btn-primary">Atualizar</a>
+    <a href="{% url 'deletar_autor' autor.pk %}" class="btn btn-danger">Deletar</a>
+</div>
+</div>
+<div class="card mt-4">
+    <div class="card-header">
+        {{ autor.nome }}
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">CPF: {{ autor.cpf }}</li>
+            <li class="list-group-item">E-mail: {{ autor.email }}</li>
+            <li class="list-group-item">Nascimento: {{ autor.data_nascimento }}</li>
+          </ul>
+    </div>
+</div>
+{% endblock content %}

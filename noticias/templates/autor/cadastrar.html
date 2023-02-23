@@ -1,14 +1,7 @@
+{% extends 'index.html' %}
 {% load bootstrap5 %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias SENAC</title>
-    {% bootstrap_css %}
-</head>
-<body>
+    {% block title %}Noticias SENAC - Cadastrar Autor {% endblock title %}
+    {% block content %}
     <h1>Noticias SENAC</h1>
     <h2>Cadastro de Autor:</h2>
 
@@ -21,6 +14,4 @@
     </button>
     {% endbuttons %}
     </form>
-    {% bootstrap_javascript %}
-</body>
-</html>
+    {% endblock content %}
