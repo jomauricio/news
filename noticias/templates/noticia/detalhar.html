@@ -18,6 +18,13 @@
             <li class="list-group-item">{{ noticia.conteudo }}</li>
             <li class="list-group-item">Autor: {{ noticia.autor }}</li>
             <li class="list-group-item">Publicação: {{ noticia.data_pub }}</li>
+            <li class="list-group-item">
+                {% if noticia.img  %}
+                <img src="{{ noticia.img.url }}" />
+                {% else %}
+                Sem imagem.
+                {% endif%}
+            </li>
           </ul>
     </div>
 </div>

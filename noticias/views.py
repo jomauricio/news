@@ -7,15 +7,11 @@ from .forms import AutorForm, NoticiaForm
 
 def index(request):
     
-    q = request.GET.get('q', '')
-    
-    if q == '':
-        autores = Autor.objects.all()[:5]
-    else:
-        autores = Autor.objects.filter(nome__contains=q)
-
+    # q = request.GET.get('q', '')
     noticias = Noticia.objects.all()[:5]
-    return render(request, "index.html", {'autores': autores, 'noticias': noticias})
+    autores = Autor.objects.all()[:5]
+    noticias_destaque = noticias[:2]
+    return render(request, "index.html", {'autores': autores, 'noticias': noticias, 'noticias_destaque': noticias_destaque})
 
 def listar_autor(request):
     autores = Autor.objects.all()
@@ -29,7 +25,7 @@ def detalhar_autor(request, pk):
 
 def cadastrar_autor(request):
     if request.method == "POST":
-        form = AutorForm(request.POST)
+        form = AutorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -45,7 +41,7 @@ def atualizar_autor(request, pk):
     form = AutorForm(instance=autor)
     
     if request.method == "POST":
-        form = AutorForm(request.POST, instance=autor)
+        form = AutorForm(request.POST, request.FILES, instance=autor)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -75,7 +71,7 @@ def detalhar_noticia(request, pk):
 
 def cadastrar_noticia(request):
     if request.method == "POST":
-        form = NoticiaForm(request.POST)
+        form = NoticiaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -91,7 +87,7 @@ def atualizar_noticia(request, pk):
     form = NoticiaForm(instance=noticia)
     
     if request.method == "POST":
-        form = NoticiaForm(request.POST, instance=noticia)
+        form = NoticiaForm(request.POST, request.FILES, instance=noticia)
         if form.is_valid():
             form.save()
             return redirect('/')

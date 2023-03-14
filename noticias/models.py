@@ -20,6 +20,7 @@ class Noticia(models.Model):
     titulo = models.CharField("Titulo", max_length=100)
     conteudo = models.TextField("Conteudo")
     data_pub = models.DateField("Data de publicação")
+    img = models.ImageField("Imagem", upload_to='imagens', null=True, blank=True)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='noticias', verbose_name="Autor")
 
     def __str__(self):

@@ -5,7 +5,7 @@
     <h1>Noticias SENAC</h1>
     <h2>Atualizar Noticia: {{ form.instance.titulo}}</h2>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
