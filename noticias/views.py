@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Autor, Noticia
-
+from django.contrib.auth.decorators import login_required
 from .forms import AutorForm, NoticiaForm
 
 # Create your views here.
@@ -69,6 +69,7 @@ def detalhar_noticia(request, pk):
     context = {"noticia": noticia}
     return render(request, "noticia/detalhar.html", context)
 
+@login_required
 def cadastrar_noticia(request):
     if request.method == "POST":
         form = NoticiaForm(request.POST, request.FILES)
