@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Autor, Noticia
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from .forms import AutorForm, NoticiaForm
 
 # Create your views here.
@@ -70,6 +70,7 @@ def detalhar_noticia(request, pk):
     return render(request, "noticia/detalhar.html", context)
 
 @login_required
+@permission_required('noticias.add_noticia')
 def cadastrar_noticia(request):
     if request.method == "POST":
         form = NoticiaForm(request.POST, request.FILES)
@@ -83,6 +84,8 @@ def cadastrar_noticia(request):
         form = NoticiaForm()
         return render(request, "noticia/cadastrar.html", {'form': form})
 
+@login_required
+@permission_required('noticias.change_noticia')
 def atualizar_noticia(request, pk):
     noticia = Noticia.objects.get(pk=pk)
     form = NoticiaForm(instance=noticia)
@@ -97,6 +100,8 @@ def atualizar_noticia(request, pk):
     else:
         return render(request, "noticia/atualizar.html", {'form': form})
 
+@login_required
+@permission_required('noticias.delete_noticia')
 def deletar_noticia(request, pk):
     noticia = Noticia.objects.get(pk=pk)
 

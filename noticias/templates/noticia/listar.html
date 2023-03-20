@@ -4,7 +4,9 @@
 <h1>Noticias SENAC</h1>
 <h2>Noticias:</h2>
 <div class="d-flex justify-content-end">
+    {% if 'noticias.add_noticia' in perms %}
     <a class="btn btn-primary" href="{% url 'cadastrar_noticia'%}" role="button">Cadastrar Noticia</a>
+    {% endif %}
 </div>
 <ul class="list-group list-group-flush">
     {% for noticia in noticias %}
