@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 
 class Autor(models.Model):
 
-    nome = models.CharField("Nome", max_length=250)
-    email = models.EmailField("Email")
-    cpf = models.CharField("CPF", max_length=15)
-    data_nascimento = models.DateField("Data de nascimento")
+    nome = models.CharField("Nome", max_length=250, blank=True)
+    email = models.EmailField("Email", blank=True)
+    cpf = models.CharField("CPF", max_length=15, blank=True)
+    data_nascimento = models.DateField("Data de nascimento", null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):

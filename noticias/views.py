@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Autor, Noticia
 from django.contrib.auth.decorators import login_required, permission_required
-from .forms import AutorForm, NoticiaForm
+from .forms import AutorForm, NoticiaForm, MyUserCreationForm
 
 # Create your views here.
 
@@ -110,3 +110,16 @@ def deletar_noticia(request, pk):
         return redirect("noticias/noticia")
     else:
         return render(request, "noticia/listar.html", {'msg': "Noticia não encontrado"})
+
+def registration(request):
+    if request.method == "POST":
+        form = MyUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            form = MyUserCreationForm()
+            return render(request, "registration/registration.html", {'form': form})
+    else:
+        form = MyUserCreationForm()
+        return render(request, "registration/registration.html", {'form': form})

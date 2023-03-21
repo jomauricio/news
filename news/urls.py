@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
-from noticias.views import index
+from noticias.views import index, registration
 
 urlpatterns = [
     path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('noticias/', include('noticias.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/registration', registration, name='registration')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

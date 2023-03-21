@@ -58,11 +58,11 @@
             <button class="btn btn-outline-success" type="submit">Pesquisar</button>
           </form>
           {% if user.is_authenticated %}
-            <span class="fw-bold text-white me-2">{{ user.email }}</span>
+            <span class="fw-bold text-white me-2">{{ user.username }}</span>
             <a class="btn btn-warning" href="{% url 'logout' %}" role="button">Logout</a>
           {% else %}
           <a class="btn btn-primary me-2" href="{% url 'login' %}" role="button">Login</a>
-          <a class="btn btn-warning" href="#" role="button">Cadastrar</a>
+          <a class="btn btn-warning" href="{% url 'registration' %}" role="button">Cadastrar</a>
           {% endif %}
         </div>
       </div>
